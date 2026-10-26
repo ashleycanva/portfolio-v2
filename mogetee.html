@@ -3,418 +3,130 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MögeTee Case Study | Ashley Duong</title>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400&family=Rubik:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --teal:   #75B09C;
-      --dark:   #191923;
-      --gold:   #F9DC5C;
-      --amber:  #c89520;
-      --white:  #ffffff;
-      --off:    #f7f7f5;
-      --muted:  #6b6b78;
-      --border: #d4d4d0;
-    }
-
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Rubik', sans-serif; background: var(--white); color: var(--dark); font-size: 16px; line-height: 1.7; }
-
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.3rem 4rem;
-      background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
-      border-bottom: 3px solid var(--teal);
-    }
-    .nav-logo { font-family: 'Newsreader', serif; font-size: 1.4rem; font-weight: 700; color: var(--dark); text-decoration: none; letter-spacing: -0.02em; }
-    .nav-logo span { color: var(--teal); }
-    .nav-back { font-size: 0.85rem; font-weight: 500; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
-    .nav-back:hover { color: var(--teal); }
-
-    /* HERO */
-    .cs-hero {
-      background: url('Portolio-images/Mogetee/731906F3-6FA8-49E6-BCA2-962BC30CC84A_1_105_c.jpeg') center center / cover no-repeat;
-      padding: 10rem 4rem 6rem;
-      position: relative; overflow: hidden;
-    }
-    .cs-hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(20,12,0,0.92) 0%, rgba(20,12,0,0.6) 50%, rgba(20,12,0,0.35) 100%);
-    }
-    .cs-hero-blob1 { display: none; }
-    .cs-hero-blob2 { display: none; }
-    .cs-hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
-    .cs-tag { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); font-weight: 600; border: 1.5px solid var(--teal); padding: 0.3rem 1rem; border-radius: 2rem; margin-bottom: 1.8rem; }
-    .cs-hero-title { font-family: 'Newsreader', serif; font-size: clamp(3rem, 7vw, 5.5rem); color: var(--white); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 0.9rem; }
-    .cs-hero-title em { color: var(--teal); font-style: italic; }
-    .cs-hero-sub { font-size: 1.1rem; color: rgba(255,255,255,0.5); font-weight: 300; max-width: 620px; margin-bottom: 3.5rem; line-height: 1.85; }
-    .cs-hero-stats { display: flex; gap: 3.5rem; flex-wrap: wrap; padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
-    .cs-stat-num { font-family: 'Newsreader', serif; font-size: 2.3rem; font-weight: 700; color: var(--gold); line-height: 1; }
-    .cs-stat-label { font-size: 0.74rem; color: rgba(255,255,255,0.38); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.35rem; }
-
-    /* SHARED */
-    section { padding: 6rem 4rem; }
-    .content-wrap { max-width: 900px; margin: 0 auto; }
-    .section-label { font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); font-weight: 600; margin-bottom: 0.9rem; }
-    .section-title { font-family: 'Newsreader', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1.2rem; }
-    .divider { width: 56px; height: 4px; background: var(--gold); border-radius: 2px; margin-bottom: 2.5rem; }
-
-    /* OVERVIEW */
-    #overview { background: var(--white); }
-    .overview-grid { display: grid; grid-template-columns: 1fr 360px; gap: 4rem; align-items: start; }
-    .overview-text p { color: var(--muted); margin-bottom: 1.1rem; font-size: 1.02rem; font-weight: 300; }
-    .overview-aside { background: var(--dark); border-radius: 1.2rem; padding: 2rem; }
-    .aside-item { margin-bottom: 1.6rem; }
-    .aside-item:last-child { margin-bottom: 0; }
-    .aside-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.13em; color: rgba(255,255,255,0.32); font-weight: 600; margin-bottom: 0.3rem; }
-    .aside-value { font-size: 0.94rem; color: var(--white); line-height: 1.5; }
-    .aside-value.gold { color: var(--gold); font-family: 'Newsreader', serif; font-size: 1.05rem; }
-
-    /* CHALLENGE */
-    #challenge { background: var(--off); }
-    .challenge-intro { color: var(--muted); font-size: 1.02rem; font-weight: 300; margin-bottom: 2.2rem; max-width: 640px; }
-    .challenge-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.4rem; }
-    .challenge-card { background: var(--white); border-left: 4px solid var(--teal); border-radius: 0 0.9rem 0.9rem 0; padding: 1.4rem 1.7rem; }
-    .challenge-card h4 { font-family: 'Newsreader', serif; font-size: 1rem; margin-bottom: 0.5rem; color: var(--dark); }
-    .challenge-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
-
-    /* APPROACH */
-    #approach { background: var(--white); }
-    .approach-steps { display: flex; flex-direction: column; gap: 3rem; }
-    .approach-step { display: grid; grid-template-columns: 72px 1fr; gap: 2rem; align-items: start; }
-    .step-num { font-family: 'Newsreader', serif; font-size: 3.8rem; font-weight: 700; color: var(--teal); opacity: 0.22; line-height: 1; padding-top: 0.1rem; }
-    .step-content h3 { font-family: 'Newsreader', serif; font-size: 1.35rem; margin-bottom: 0.7rem; color: var(--dark); }
-    .step-content p { color: var(--muted); font-size: 0.97rem; line-height: 1.8; font-weight: 300; }
-    .step-highlight {
-      background: rgba(200,149,32,0.08);
-      border: 1.5px solid rgba(200,149,32,0.3);
-      border-radius: 0.7rem; padding: 0.85rem 1.2rem;
-      margin-top: 1.1rem; font-size: 0.88rem; color: var(--dark);
-      font-weight: 500; display: flex; align-items: center; gap: 0.7rem;
-    }
-
-    /* RESULTS */
-    #results { background: var(--dark); }
-    #results .section-label { color: var(--gold); }
-    #results .section-title { color: var(--white); }
-    #results .divider { background: var(--teal); }
-    .results-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; margin-bottom: 3rem; }
-    .result-stat { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 1rem; padding: 1.8rem 1.4rem; text-align: center; }
-    .result-num { font-family: 'Newsreader', serif; font-size: 2.4rem; font-weight: 700; color: var(--gold); line-height: 1; }
-    .result-label { font-size: 0.73rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.09em; margin-top: 0.55rem; line-height: 1.4; }
-    .results-summary { background: rgba(200,149,32,0.08); border: 1px solid rgba(200,149,32,0.18); border-radius: 1.2rem; padding: 2.2rem 2.5rem; }
-    .results-summary p { color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.85; font-weight: 300; }
-    .results-summary p + p { margin-top: 0.9rem; }
-
-    /* SHOWCASE GALLERY */
-    .showcase-section { background: var(--off); padding: 6rem 4rem; }
-    .showcase-section .content-wrap { max-width: 900px; margin: 0 auto; }
-    .showcase-gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
-    }
-    .showcase-item {
-      border-radius: 1rem; overflow: hidden;
-      background: var(--dark);
-      aspect-ratio: 1/1;
-      position: relative;
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-    .showcase-item:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.15); }
-    .showcase-item img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-      transition: transform 0.4s ease;
-    }
-    .showcase-item:hover img { transform: scale(1.04); }
-    @media (max-width: 900px) {
-      .showcase-section { padding: 4rem 1.5rem; }
-      .showcase-gallery { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    /* BACK CTA */
-    .back-cta { background: var(--off); padding: 5.5rem 4rem; text-align: center; }
-    .back-cta .section-label { margin-bottom: 0.6rem; }
-    .back-cta .section-title { margin-bottom: 0.8rem; }
-    .back-cta p { color: var(--muted); margin-bottom: 2.2rem; font-size: 1.02rem; }
-    .btn-primary { background: var(--dark); color: var(--gold); padding: 0.9rem 2.2rem; border-radius: 2rem; text-decoration: none; font-size: 0.9rem; font-weight: 600; border: 2px solid var(--dark); transition: all 0.25s; display: inline-block; }
-    .btn-primary:hover { background: var(--teal); border-color: var(--teal); color: var(--white); transform: translateY(-3px); }
-
-    /* FOOTER */
-    footer { background: var(--dark); color: rgba(255,255,255,0.4); text-align: center; padding: 2rem; font-size: 0.85rem; border-top: 3px solid var(--teal); }
-    footer span { color: var(--gold); }
-
-    /* FADE IN */
-    .fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      nav { padding: 1.1rem 1.5rem; }
-      section { padding: 4rem 1.5rem; }
-      .cs-hero { padding: 8rem 1.5rem 4rem; }
-      .cs-hero-stats { gap: 2rem; }
-      .overview-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .challenge-grid { grid-template-columns: 1fr; }
-      .approach-step { grid-template-columns: 50px 1fr; gap: 1.2rem; }
-      .step-num { font-size: 2.6rem; }
-      .results-stats { grid-template-columns: repeat(2, 1fr); }
-      .back-cta { padding: 4rem 1.5rem; }
-    }
-  </style>
+  <title>MögeTee · Ashley Duong</title>
+  <meta name="description" content="Case study: influencer, paid ads and franchise-wide campaigns for a global boba brand with 50+ US locations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
 </head>
 <body>
 
-  <!-- NAV -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M6 18 18 6M8 6h10v10" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-burst" viewBox="0 0 100 100"><g stroke="currentColor" stroke-width="11" stroke-linecap="round"><path d="M50 8v84M8 50h84M20 20l60 60M80 20 20 80"/></g></symbol>
+  </svg>
+
   <nav>
-    <a href="index.html" class="nav-logo">Ashley <span>Duong</span></a>
-    <a href="index.html#projects" class="nav-back">← Back to Portfolio</a>
+    <div class="nav-bar">
+      <a href="index.html" class="logo"><svg><use href="#i-burst"/></svg>Ashley Duong</a>
+      <ul class="nav-links">
+        <li><a href="index.html#work">Work</a></li>
+        <li class="hide-sm"><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Let's talk <svg><use href="#i-arrow"/></svg></a></li>
+      </ul>
+    </div>
   </nav>
 
   <!-- HERO -->
-  <div class="cs-hero">
-    <div class="cs-hero-blob1"></div>
-    <div class="cs-hero-blob2"></div>
-    <div class="cs-hero-inner">
-      <div class="cs-tag">✦ Case StudySocial & Franchise Marketing</div>
-      <h1 class="cs-hero-title">MögeTee<br><em>Growing a Boba Empire</em></h1>
-      <p class="cs-hero-sub">Social media growth, influencer marketing, and franchise-wide campaign execution for one of the US's fastest-growing boba tea brandsall in under a year.</p>
-      <div class="cs-hero-stats">
-        <div>
-          <div class="cs-stat-num">3K+</div>
-          <div class="cs-stat-label">New Instagram Followers</div>
-        </div>
-        <div>
-          <div class="cs-stat-num">30+</div>
-          <div class="cs-stat-label">Influencer Partners</div>
-        </div>
-        <div>
-          <div class="cs-stat-num">50+</div>
-          <div class="cs-stat-label">Franchise Locations Served</div>
-        </div>
-        <div>
-          <div class="cs-stat-num">4mo</div>
-          <div class="cs-stat-label">To 3K Follower Growth</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <header class="slide slide--blue cs-hero">
+    <svg class="burst cs-burst" style="width:110px;height:110px;right:clamp(20px,5vw,72px);top:clamp(28px,5vw,72px);opacity:.9"><use href="#i-burst"/></svg>
+    <div class="wrap">
+      <a href="index.html#work" class="back-link"><svg><use href="#i-arrow"/></svg>All work</a>
+      <div class="eyebrow" style="margin-top:1.6rem">Case study · Social &amp; franchise marketing</div>
+      <h1 class="display">MögeTee</h1>
+      <p class="cs-lede">Social growth, influencer marketing and franchise-wide campaigns for a global boba brand with 50+ US franchise locations, all in under a year.</p>
 
-  <!-- OVERVIEW -->
-  <section id="overview">
-    <div class="content-wrap">
-      <div class="overview-grid fade-in">
-        <div class="overview-text">
-          <div class="section-label">The Company</div>
-          <h2 class="section-title">A Global Boba Brand, Racing to Keep Up with Itself</h2>
-          <div class="divider"></div>
-          <p>Möge Tee is a premium boba tea brand founded in mainland China, built on the promise of freshness and high-quality natural ingredients. With locations spanning North America, Australia, and Southeast Asia, the brand had grown into a global namebut its US presence was expanding faster than its marketing could follow.</p>
-          <p>By the time I came in, MögeTee had over 50 active franchise locations across the United States, with new stores opening regularly. The product was strong. The brand recognition among boba enthusiasts was real. But the marketing infrastructure hadn't caught up, and they needed someone to build it while the train was already moving.</p>
-        </div>
-        <div class="overview-aside">
-          <div class="aside-item">
-            <div class="aside-label">Industry</div>
-            <div class="aside-value">Food & Beverage · Boba Tea</div>
-          </div>
-          <div class="aside-item">
-            <div class="aside-label">Market</div>
-            <div class="aside-value">United States (50+ Franchise Locations)</div>
-          </div>
-          <div class="aside-item">
-            <div class="aside-label">Global Presence</div>
-            <div class="aside-value gold">China · North America · Australia · Southeast Asia</div>
-          </div>
-          <div class="aside-item">
-            <div class="aside-label">My Role</div>
-            <div class="aside-value">Marketing Specialist · Social Media & Franchise Campaigns</div>
-          </div>
-          <div class="aside-item">
-            <div class="aside-label">Scope</div>
-            <div class="aside-value">Influencer Marketing · Paid Ads · Content Creation · Campaign Execution · Merchandise</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+      <dl class="cs-meta">
+        <div><dt>My role</dt><dd>Marketing Specialist, social &amp; franchise campaigns</dd></div>
+        <div><dt>Industry</dt><dd>Food &amp; beverage · Boba</dd></div>
+        <div><dt>Market</dt><dd>US, 50+ franchises</dd></div>
+        <div><dt>Scope</dt><dd>Influencers · Ads · Content · Merch</dd></div>
+      </dl>
 
-  <!-- CHALLENGE -->
-  <section id="challenge">
-    <div class="content-wrap">
-      <div class="fade-in">
-        <div class="section-label">The Challenge</div>
-        <h2 class="section-title">50 Locations, Zero Unified Strategy</h2>
-        <div class="divider"></div>
-        <p class="challenge-intro">Rapid US expansion had created a fragmented brand experience. Each franchise was operating independently, and the gaps were starting to show.</p>
-      </div>
-      <div class="challenge-grid fade-in">
-        <div class="challenge-card">
-          <h4>No Marketing Uniformity</h4>
-          <p>With franchises opening across the country at speed, there was no centralized guidance on messaging, promotions, or brand standards, leading to inconsistent customer experiences.</p>
-        </div>
-        <div class="challenge-card">
-          <h4>Weak Social Media Presence</h4>
-          <p>Despite a globally recognized product, MögeTee's US social accounts had low follower counts and minimal engagement, limiting their ability to reach new customers online.</p>
-        </div>
-        <div class="challenge-card">
-          <h4>No Influencer or Paid Ad Strategy</h4>
-          <p>The brand had no existing influencer relationships and had not run structured paid ad campaigns, leaving significant growth potential untapped.</p>
-        </div>
-        <div class="challenge-card">
-          <h4>Franchise Coordination Gaps</h4>
-          <p>Seasonal and promotional campaigns had no delivery system to reach all locations consistently, meaning individual stores missed out on national promotions.</p>
-        </div>
+      <div class="stats">
+        <div class="stat"><div class="stat-num display" data-count="3" data-suffix="K+">3K+</div><div class="stat-label">New Instagram followers</div></div>
+        <div class="stat"><div class="stat-num display" data-count="4" data-suffix=" mo">4 mo</div><div class="stat-label">To reach them</div></div>
+        <div class="stat"><div class="stat-num display" data-count="30" data-suffix="+">30+</div><div class="stat-label">Influencer partners</div></div>
+        <div class="stat"><div class="stat-num display" data-count="50" data-suffix="+">50+</div><div class="stat-label">Locations reached</div></div>
       </div>
     </div>
-  </section>
+  </header>
 
   <!-- APPROACH -->
-  <section id="approach">
-    <div class="content-wrap">
-      <div class="section-label fade-in">The Approach</div>
-      <h2 class="section-title fade-in">Four Pillars of Execution</h2>
-      <div class="divider fade-in"></div>
-      <div class="approach-steps">
-
-        <div class="approach-step fade-in">
-          <div class="step-num">01</div>
-          <div class="step-content">
-            <h3>Build an Influencer Network from Scratch</h3>
-            <p>Identified and outreached to 30+ micro-influencers across Instagram who aligned with MögeTee's audience: food lovers, lifestyle creators, and local community figures. Rather than expensive paid partnerships, I structured deals around commission and free product, keeping costs minimal while generating authentic, high-reach content. The result: 3,000 new Instagram followers in just 4 months, alongside a measurable lift in daily engagement.</p>
-            <div class="step-highlight">📲 30+ influencer partners · 3,000+ new followers · 4-month timeline · low-cost model</div>
-          </div>
+  <section class="slide slide--cream">
+    <div class="wrap">
+      <div class="eyebrow reveal">The challenge</div>
+      <h2 class="display section-head reveal">50 stores, no plan</h2>
+      <p class="cs-challenge reveal">MögeTee was opening US franchises faster than its marketing could follow. Each store ran on its own, with no shared messaging, weak social accounts, no influencer or paid ad strategy, and no way to get national promotions to every location.</p>
+      <div class="cs-features cs-features--4">
+        <div class="cs-feature reveal">
+          <div class="cs-num">01</div>
+          <h3>An influencer network from scratch</h3>
+          <p>Recruited 30+ micro-influencers (food lovers, lifestyle creators and local figures) on commission and free product instead of expensive paid deals.</p>
+          <p class="hl">30+ partners · 3,000+ followers in 4 months · low cost</p>
         </div>
-
-        <div class="approach-step fade-in">
-          <div class="step-num">02</div>
-          <div class="step-content">
-            <h3>Launch "Be the Mochi to my Berry"Valentine's Campaign</h3>
-            <p>Conceived and executed a Valentine's Day campaign centered around a new limited drink pairing, Mochi and Berry, framed as a love story between two flavors. The campaign had its own identity, messaging, and recipes, designed to be celebratory and shareable. I was responsible for the full franchise rollout, packaging the campaign into a ready-to-deploy kit and delivering it to every participating US location, ensuring a consistent, on-brand experience nationwide.</p>
-            <div class="step-highlight">🧋 Original campaign concept · franchise-wide delivery · unified messaging + recipes</div>
-          </div>
+        <div class="cs-feature reveal">
+          <div class="cs-num">02</div>
+          <h3>"Be the Mochi to my Berry"</h3>
+          <p>Created a Valentine's campaign around a new Mochi and Berry drink pairing, then packaged it as a ready-to-use kit with messaging and recipes for every participating US store.</p>
+          <p class="hl">Original concept · franchise-wide rollout</p>
         </div>
-
-        <div class="approach-step fade-in">
-          <div class="step-num">03</div>
-          <div class="step-content">
-            <h3>Launch & Optimize Paid Advertising</h3>
-            <p>Proposed and launched MögeTee's first structured paid advertising effort on Facebook and Instagram. Ran A/B tests across multiple ad formats: static images, video, and carousel, to identify what resonated most with the target audience. The data gathered directly informed future creative strategy, making each subsequent campaign more efficient and better targeted than the last.</p>
-            <div class="step-highlight">📊 Facebook & Instagram Ads · A/B testing across ad formats · data-driven creative decisions</div>
-          </div>
+        <div class="cs-feature reveal">
+          <div class="cs-num">03</div>
+          <h3>The first paid ad program</h3>
+          <p>Proposed and launched the brand's first structured Facebook and Instagram ads, A/B testing image, video and carousel formats to guide future creative.</p>
+          <p class="hl">A/B tested formats · data-driven creative</p>
         </div>
-
-        <div class="approach-step fade-in">
-          <div class="step-num">04</div>
-          <div class="step-content">
-            <h3>Develop Branded Merchandise for Store Activations</h3>
-            <p>Sourced and developed a line of branded merchandisekeychains, figures, balloons, and flowersdesigned for new store opening events, raffles, and seasonal promotions. Worked directly with manufacturers in China to design prototypes, review samples, and ensure quality before delivery. The merchandise created tangible brand moments at the point of experience, boosting in-store excitement and customer loyalty.</p>
-            <div class="step-highlight">🎁 Keychains · figures · balloons · vendor-managed from prototype to delivery</div>
-          </div>
+        <div class="cs-feature reveal">
+          <div class="cs-num">04</div>
+          <h3>Merch for store activations</h3>
+          <p>Developed keychains, figures, balloons and flowers for openings and raffles, working directly with manufacturers in China from prototype to delivery.</p>
+          <p class="hl">Vendor-managed from prototype to delivery</p>
         </div>
+      </div>
+      <p class="cs-result reveal">MögeTee went from a scattered, low-engagement presence to <b>3,000+ new followers</b>, <b>30+ influencer partners</b> and its first nationally coordinated seasonal campaign, with the systems in place to keep growing.</p>
+    </div>
+  </section>
 
+  <!-- SHOWCASE -->
+  <section class="slide slide--blue">
+    <div class="wrap">
+      <div class="eyebrow reveal">Creative work</div>
+      <h2 class="display section-head reveal">Showcase</h2>
+      <div class="gallery">
+        <a href="Portolio-images/Mogetee/Easter-featured%20drinks.png" data-zoom><img src="Portolio-images/Mogetee/Easter-featured%20drinks.png" alt="Easter featured drinks post" loading="lazy" /></a>
+        <a href="Portolio-images/Mogetee/731906F3-6FA8-49E6-BCA2-962BC30CC84A_1_105_c.jpeg" data-zoom><img src="Portolio-images/Mogetee/731906F3-6FA8-49E6-BCA2-962BC30CC84A_1_105_c.jpeg" alt="MögeTee drinks" loading="lazy" /></a>
+        <a href="Portolio-images/Mogetee/bobaenamelpin.jpg" data-zoom><img src="Portolio-images/Mogetee/bobaenamelpin.jpg" alt="Boba enamel pin merchandise" loading="lazy" /></a>
+        <a href="Portolio-images/Mogetee/Screenshot%202026-05-26%20171715.png" data-zoom><img src="Portolio-images/Mogetee/Screenshot%202026-05-26%20171715.png" alt="MögeTee social post" loading="lazy" /></a>
+        <a href="Portolio-images/Mogetee/Grape%20Tea.jpeg" data-zoom><img src="Portolio-images/Mogetee/Grape%20Tea.jpeg" alt="Grape tea" loading="lazy" /></a>
+        <a href="Portolio-images/Mogetee/66C7535C-F2E1-4C9E-9E8D-809735760D50_1_105_c.jpeg" data-zoom><img src="Portolio-images/Mogetee/66C7535C-F2E1-4C9E-9E8D-809735760D50_1_105_c.jpeg" alt="MögeTee product" loading="lazy" /></a>
+        <a href="Portolio-images/Mogetee/Screenshot%202026-05-26%20172625.png" data-zoom><img src="Portolio-images/Mogetee/Screenshot%202026-05-26%20172625.png" alt="MögeTee social post" loading="lazy" /></a>
+        <a href="Portolio-images/Mogetee/88C1718A-8072-4F00-A2E0-683D74B9D8F1_1_105_c.jpeg" data-zoom><img src="Portolio-images/Mogetee/88C1718A-8072-4F00-A2E0-683D74B9D8F1_1_105_c.jpeg" alt="MögeTee product" loading="lazy" /></a>
+        <a href="Portolio-images/Mogetee/750F9C1C-B78A-40D6-896E-A3126C99F4B8_1_105_c.jpeg" data-zoom><img src="Portolio-images/Mogetee/750F9C1C-B78A-40D6-896E-A3126C99F4B8_1_105_c.jpeg" alt="MögeTee product" loading="lazy" /></a>
+        <a href="Portolio-images/Mogetee/D5F08B06-52FC-46C5-80D7-A45BB3A1130E_1_105_c.jpeg" data-zoom><img src="Portolio-images/Mogetee/D5F08B06-52FC-46C5-80D7-A45BB3A1130E_1_105_c.jpeg" alt="MögeTee product" loading="lazy" /></a>
+        <a href="Portolio-images/Mogetee/0BC3BCFE-4DC6-40BD-9696-8636D891601A.png" data-zoom><img src="Portolio-images/Mogetee/0BC3BCFE-4DC6-40BD-9696-8636D891601A.png" alt="MögeTee campaign graphic" loading="lazy" /></a>
       </div>
     </div>
   </section>
 
-  <!-- RESULTS -->
-  <section id="results">
-    <div class="content-wrap">
-      <div class="section-label fade-in">The Results</div>
-      <h2 class="section-title fade-in">Real Growth, Across Every Channel</h2>
-      <div class="divider fade-in"></div>
-      <div class="results-stats fade-in">
-        <div class="result-stat">
-          <div class="result-num">3K+</div>
-          <div class="result-label">New Instagram Followers in 4 Months</div>
-        </div>
-        <div class="result-stat">
-          <div class="result-num">30+</div>
-          <div class="result-label">Influencer Partnerships Secured</div>
-        </div>
-        <div class="result-stat">
-          <div class="result-num">50+</div>
-          <div class="result-label">Franchise Locations Reached</div>
-        </div>
-        <div class="result-stat">
-          <div class="result-num">1</div>
-          <div class="result-label">Original Brand Campaign Launched</div>
-        </div>
-      </div>
-      <div class="results-summary fade-in">
-        <p>In a short engagement, MögeTee went from a fragmented, low-engagement social presence to a growing community with 3,000+ new followers, 30+ active influencer partners, and its first nationally coordinated seasonal campaign.</p>
-        <p>By building a low-cost influencer network, launching paid ad testing, and delivering a franchise-wide campaign rollout, the brand gained both the audience and the infrastructure to sustain consistent growthnot just a one-time spike.</p>
+  <!-- NEXT -->
+  <section class="slide slide--cream contact">
+    <div class="wrap">
+      <div class="eyebrow reveal">Next case study</div>
+      <h2 class="display reveal"><a href="eaulash.html" class="next-link">Eau De Lash</a></h2>
+      <div class="contact-links reveal">
+        <a href="eaulash.html" class="pill"><span class="knob"><svg><use href="#i-arrow"/></svg></span>Read next</a>
+        <a href="index.html#work" class="pill pill--ghost">All work</a>
       </div>
     </div>
   </section>
 
-  <!-- SHOWCASE GALLERY -->
-  <div class="showcase-section">
-    <div class="content-wrap">
-      <div class="section-label fade-in">Creative Work</div>
-      <h2 class="section-title fade-in">Work Showcase</h2>
-      <div class="divider fade-in"></div>
-      <div class="showcase-gallery fade-in">
-        <div class="showcase-item">
-          <img src="Portolio-images/Mogetee/bobaenamelpin.jpg" alt="Boba enamel pin" />
-        </div>
-        <div class="showcase-item">
-          <img src="Portolio-images/Mogetee/Easter-featured%20drinks.png" alt="Easter featured drinks" />
-        </div>
-        <div class="showcase-item">
-          <img src="Portolio-images/Mogetee/Grape%20Tea.jpeg" alt="Grape Tea" />
-        </div>
-        <div class="showcase-item">
-          <img src="Portolio-images/Mogetee/Screenshot%202026-05-26%20171715.png" alt="MögeTee showcase" />
-        </div>
-        <div class="showcase-item">
-          <img src="Portolio-images/Mogetee/Screenshot%202026-05-26%20172625.png" alt="MögeTee showcase" />
-        </div>
-        <div class="showcase-item">
-          <img src="Portolio-images/Mogetee/66C7535C-F2E1-4C9E-9E8D-809735760D50_1_105_c.jpeg" alt="MögeTee product" />
-        </div>
-        <div class="showcase-item">
-          <img src="Portolio-images/Mogetee/88C1718A-8072-4F00-A2E0-683D74B9D8F1_1_105_c.jpeg" alt="MögeTee product" />
-        </div>
-        <div class="showcase-item">
-          <img src="Portolio-images/Mogetee/750F9C1C-B78A-40D6-896E-A3126C99F4B8_1_105_c.jpeg" alt="MögeTee product" />
-        </div>
-        <div class="showcase-item">
-          <img src="Portolio-images/Mogetee/731906F3-6FA8-49E6-BCA2-962BC30CC84A_1_105_c.jpeg" alt="MögeTee product" />
-        </div>
-        <div class="showcase-item">
-          <img src="Portolio-images/Mogetee/D5F08B06-52FC-46C5-80D7-A45BB3A1130E_1_105_c.jpeg" alt="MögeTee product" />
-        </div>
-        <div class="showcase-item">
-          <img src="Portolio-images/Mogetee/0BC3BCFE-4DC6-40BD-9696-8636D891601A.png" alt="MögeTee showcase" />
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- BACK CTA -->
-  <div class="back-cta">
-    <div class="content-wrap">
-      <div class="section-label">Portfolio</div>
-      <h2 class="section-title">Want to see more?</h2>
-      <p>Head back to my portfolio to explore other projects and case studies.</p>
-      <a href="index.html#projects" class="btn-primary">← Back to Portfolio</a>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
   <footer>
-    <p>© 2025 <span>Ashley Duong</span>. All rights reserved.</p>
+    <span>© 2026 Ashley Duong</span>
+    <span>Houston, TX</span>
   </footer>
 
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  </script>
+  <script src="assets/case-study.js"></script>
 </body>
 </html>

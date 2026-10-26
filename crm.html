@@ -117,7 +117,7 @@
       <p class="reveal">I build websites and internal tools with AI, alongside the marketing.</p>
       <div class="contact-links reveal">
         <a href="mailto:thanhthanh12396@gmail.com" class="pill"><span class="knob"><svg><use href="#i-arrow"/></svg></span>Email me</a>
-        <a href="index.html#work" class="pill pill--ghost">More work</a>
+        <a href="uppf.html" class="pill pill--ghost">Next: PPF Brand</a>
       </div>
     </div>
   </section>
@@ -127,15 +127,6 @@
     <span>Houston, TX</span>
   </footer>
 
-  <script>
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-  </script>
+  <script src="assets/case-study.js"></script>
 </body>
 </html>
